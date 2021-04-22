@@ -1,3 +1,4 @@
+const socket =io();
 
 const myform=document.querySelector('#message-form')
 const messageInputFeild=myform.querySelector('input')
@@ -12,7 +13,30 @@ const sidebarTemplate =document.querySelector("#sidebar-template").innerHTML
 //Parsing parameters from url(join form)
 const {username,room}= Qs.parse(location.search, {ignoreQueryPrefix:true})
  
-const socket =io();
+const autoscroll=()=>
+{
+    // new message element
+    const newMessage =message1.lastElementChild 
+
+    const newMessageStyles =getComputedStyle(newMessage)
+    const newMessageMargin = parseInt(newMessageStyles.marginBottom)
+    const newMessageHeight =newMessage.offsetHeight + newMessageMargin
+    console.log(newMessageMargin)
+
+    //visible height
+    const visibleHeight =message1.offsetHeight
+
+    //height of message container
+    const containerHeight =message1.scrollHeight
+    
+    //how far I have scrolled
+    const scrollOffset =message1.scrollTip + visibleHeight
+
+    if (containerHeight-newMessageHeight <= scrollOffset)
+    {
+        message1.scrollTop =message1.scrollHeight
+    }
+}
 
 
 myform.addEventListener('submit',(e)=>{
@@ -59,13 +83,14 @@ socket.on("message",({msg,username})=>{
     const html=Mustache.render(messageTemplate,{msg,username})
 
     message1.insertAdjacentHTML('beforeend',html)
+    //autoscroll()
 })
 
 socket.on('locationMessage',({username,url})=>{
     
     const ht=Mustache.render(locationTemplate,{username,url})
     message1.insertAdjacentHTML('beforeend',ht)
-
+    //autoscroll()
 })
 
 
