@@ -26,6 +26,12 @@ io.on('connection',function(socket) {
         callback()
     })
 
+    socket.on('sendlocation',(coords,callback)=>{
+        const user=getUser(socket.id)
+        io.emit('locationMessage',{username:user.username, url:`https://google.com/maps?q=${coords.lat},${coords.long}`})
+        callback()
+    })
+    
     socket.on('join',({username,room},callback)=> {
         
         const user=addUser({id:socket.id,username:username,room:room})
@@ -49,6 +55,8 @@ io.on('connection',function(socket) {
         
     })
 
+    
+
     socket.on('disconnect',()=>{
         const user= removeUser(socket.id)
         if(user)
@@ -60,11 +68,7 @@ io.on('connection',function(socket) {
             })
         }
     })
-    socket.on('sendlocation',(coords,callback)=>{
-        const user=getUser(socket.id)
-        io.emit('locationMessage',{username:user.username, url:`https://google.com/maps?q=${coords.lat},${coords.long}`})
-        callback()
-    })
+    
 }) 
 
 server.listen(process.env.PORT||3000, ()=>{

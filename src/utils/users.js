@@ -4,8 +4,8 @@ users=[]
 
 const addUser= ({id,username,room})=>{
     // Clean data
-    username=username.trim().toLowerCase()
-    room =room.trim().toLowerCase()
+    // username=username.trim().toLowerCase()
+    // room =room.trim().toLowerCase()
 
     //Validate data
     if(!username || !room)
@@ -53,7 +53,7 @@ const getUser=(id)=>{
 
 const getUsersInRoom=(room)=>{
     usersInRoom=[]
-    room=room.trim().toLowerCase()
+    // room=room.trim().toLowerCase()
     
     for(let i=0;i<users.length ;i++)
     { 
