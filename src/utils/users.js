@@ -32,8 +32,10 @@ const addUser= ({id,username,room})=>{
 
 }
 
-const removeUser=(id)=>{
-  index=users.findIndex((user)=> user.id=== id)
+const removeUser = (id) => {
+    
+    index = users.findIndex((user) => user.id === id)
+    console.log("index",index)
 
   if(index!== -1)
   {
@@ -62,7 +64,7 @@ const getUsersInRoom=(room)=>{
             usersInRoom.push(users[i])
         }
     }
-    console.log(usersInRoom)
+    //console.log(usersInRoom)
     return usersInRoom
 }
 
