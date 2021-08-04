@@ -11,7 +11,14 @@ const locationTemplate=document.querySelector("#location-template").innerHTML
 const sidebarTemplate =document.querySelector("#sidebar-template").innerHTML
  
 //Parsing parameters from url(join form)
-const {username,room}= Qs.parse(location.search, {ignoreQueryPrefix:true})
+const { room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+
+const data = require('../randomUsername.json')
+const roomUserNamesSize = data[room].length
+console.log(data)
+const index = Math.floor(Math.random() * roomUserNamesSize);
+const username =data[room][index]
+
  
 const autoscroll=()=>
 {
@@ -46,8 +53,12 @@ myform.addEventListener('submit',(e)=>{
     sendButton.setAttribute('disabled','disabled')
 
     const msg=document.querySelector('#msg').value
-    socket.emit('sendMessage', msg,()=>{
+    socket.emit('sendMessage', msg, () => {
+        
         console.log("message has been delivered")
+        console.log(roomUserNamesSize)
+        
+        
     })
 
     //enable button
@@ -79,7 +90,7 @@ socket.emit("join",{username ,room },(error)=>{
  })
 
 socket.on("message",({msg,username})=>{
-   console.log(1)
+   
     const html=Mustache.render(messageTemplate,{msg,username})
 
     message1.insertAdjacentHTML('beforeend',html)
