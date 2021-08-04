@@ -9,12 +9,20 @@
     <div class="centered-form">
         <div class="centered-form__box">
 
-            <h2>Join Room</h2>
+            <h2 style="padding-left:1.8rem ;">Join Room</h2>
             <form action="./chat.html">
                 
-                <input type="text" placeholder="Your name" name="username" required>
+                <!-- <input type="text" placeholder="Your name" name="username" required>
                 
-                <input type="text" placeholder="Room" name="room" required>
+                <input type="text" placeholder="Room" name="room" required> -->
+                
+                <select style="padding:1rem; margin: 1rem;" id="room" name="room"  required>
+                    <option selected>Choose room name</option>
+                    <option value="Mirzapur">Mirzapur</option>
+                    <option value="Sacred Games">Sacred Games</option>
+                    <option value="Game of thrones">Game of thrones</option>
+                    <option value="Vampire Diaries">Vampire Diaries</option>
+                  </select>
                 <button> Join </button> 
             </form>
         </div>

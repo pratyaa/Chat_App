@@ -4,8 +4,8 @@ users=[]
 
 const addUser= ({id,username,room})=>{
     // Clean data
-    username=username.trim().toLowerCase()
-    room =room.trim().toLowerCase()
+    // username=username.trim().toLowerCase()
+    // room =room.trim().toLowerCase()
 
     //Validate data
     if(!username || !room)
@@ -32,8 +32,10 @@ const addUser= ({id,username,room})=>{
 
 }
 
-const removeUser=(id)=>{
-  index=users.findIndex((user)=> user.id=== id)
+const removeUser = (id) => {
+    
+    index = users.findIndex((user) => user.id === id)
+    console.log("index",index)
 
   if(index!== -1)
   {
@@ -53,7 +55,7 @@ const getUser=(id)=>{
 
 const getUsersInRoom=(room)=>{
     usersInRoom=[]
-    room=room.trim().toLowerCase()
+    // room=room.trim().toLowerCase()
     
     for(let i=0;i<users.length ;i++)
     { 
@@ -62,7 +64,7 @@ const getUsersInRoom=(room)=>{
             usersInRoom.push(users[i])
         }
     }
-    console.log(usersInRoom)
+    //console.log(usersInRoom)
     return usersInRoom
 }
 
